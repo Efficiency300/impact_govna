@@ -1,0 +1,26 @@
+services:
+  main:
+    build:
+      context: .
+      dockerfile: dockerfile
+    image: impact
+    command: uvicorn amo.server:app --host 0.0.0.0 --port 8080
+    ports:
+      - "8020:8080"
+    volumes:
+      - ./amo:/app/amo
+      - ./config:/app/config
+      - ./core:/app/core
+      - ./services:/app/services
+      - ./utils:/app/utils
+      - ./logs:/app/logs
+
+  timetable_updater:
+    build:
+      context: .
+      dockerfile: dockerfile
+    image: impact
+    command: python /app/utils/vector_updater.py
+    volumes:
+      - ./utils:/app/utils
+
