@@ -10,11 +10,11 @@ class MarkdownProcessor:
         # Удаление заголовков (например, ### Заголовок)
         text = re.sub(r'^#{1,6}\s+', '', text, flags=re.MULTILINE)
 
-        # Удаление жирного текста (**текст** или __текст__)
-        text = re.sub(r'(\*\*|__)(.*?)\1', r'\2', text)
+        # Удаление жирного текста (**текст**)
+        text = re.sub(r'(\*\*)(.*?)\1', r'\2', text)
 
-        # Удаление курсива (*текст* или _текст_)
-        text = re.sub(r'(\*|_)(.*?)\1', r'\2', text)
+        # Удаление курсива (*текст*)
+        text = re.sub(r'(\*)(.*?)\1', r'\2', text)
 
         # Удаление списков (- или *)
         text = re.sub(r'^[-*]\s+', '', text, flags=re.MULTILINE)
@@ -27,7 +27,7 @@ class MarkdownProcessor:
         )
 
         # Удаление изображений ![alt](URL)
-        text = re.sub(r'!\[([^\]]*)\]\([^)]+\)', '', text)
+        text = re.sub(r'!\[[^\]]*\]\([^)]+\)', '', text)
 
         # Удаление горизонтальных линий
         text = re.sub(r'^---$', '', text, flags=re.MULTILINE)
@@ -39,5 +39,3 @@ class MarkdownProcessor:
         text = re.sub(r'\n{3,}', '\n\n', text)
 
         return text.strip()
-
-
