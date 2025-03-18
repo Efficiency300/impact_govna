@@ -13,8 +13,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 talk_id_json = BASE_DIR / "config/talk_id.json"
 
 SLEEPING_TIME = 10
-NERAZOBRANOE = 78519691
-AI_OTVECHAET = 81097912
+NERAZOBRANOE = 82449719
+AI_OTVECHAET = 82449723
 viyavlenie =81097916
 informanie = 81097924
 demourok = 81097928
