@@ -3,7 +3,7 @@ from icecream import ic
 from openai import AsyncOpenAI
 from config.config import Config
 from pathlib import Path
-from services.promt import promt
+from services.promt import promt , camp_info
 from utils.JsonDataBase import JSONDatabase
 
 
@@ -37,6 +37,20 @@ tools = [
             }
         }
     },
+    {
+
+        "type": "function",
+        "function": {
+            "name": "spring_camp",
+            "description": "Используй когда рекомендуешь весенний лагерь",
+            "parameters": {
+                "type": "object",
+                "properties": {},
+                "required": []
+            }
+        }
+    },
+
 ]
 
 
@@ -47,6 +61,10 @@ def handle_tool_call(tool_name, tool_args):
 
         with open(timetable_path, "r", encoding="UTF-8") as file:
             return file.read()
+    if tool_name == "spring_camp":
+
+        return camp_info
+
 
 
 

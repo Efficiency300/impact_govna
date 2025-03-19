@@ -26,6 +26,12 @@ class MarkdownProcessor:
             text
         )
 
+        # Удаление строк таблиц
+        text = re.sub(r'^\|.*\|$', '', text, flags=re.MULTILINE)
+
+        # Удаление разделительных линий таблицы (--- | --- | ---)
+        text = re.sub(r'^\s*\|?(\s*-+\s*\|)+\s*$', '', text, flags=re.MULTILINE)
+
         # Удаление изображений ![alt](URL)
         text = re.sub(r'!\[[^\]]*\]\([^)]+\)', '', text)
 
